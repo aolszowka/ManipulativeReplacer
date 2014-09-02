@@ -25,17 +25,6 @@ namespace ManipulativeReplacer
         }
 
         /// <summary>
-        /// Method to reset all of the fonts
-        /// </summary>
-        /// <param name="font">The font to set the text boxes to</param>
-        private void SetTextBoxFont(Font font)
-        {
-            this.patternInputTextBox.Font = font;
-            this.replacementInputTextBox.Font = font;
-            this.outputTextBox.Font = font;
-        }
-
-        /// <summary>
         /// EventHander for when the Input TextBoxes Change.
         /// </summary>
         /// <param name="sender">The object that invoked this event.</param>
@@ -83,44 +72,6 @@ namespace ManipulativeReplacer
         }
 
         /// <summary>
-        /// EventHandler for when the 'Change Font' dialog is selected.
-        /// </summary>
-        /// <param name="sender">The object that invoked this EventHandler.</param>
-        /// <param name="e">The arguments to the EventHandler.</param>
-        private void changeFontToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Save off the previous font
-            Font previousFontValue = this.fontDialog.Font;
-
-            if (this.fontDialog.ShowDialog() == DialogResult.Cancel)
-            {
-                this.fontDialog.Font = previousFontValue;
-            }
-
-            this.SetTextBoxFont(this.fontDialog.Font);
-        }
-
-        /// <summary>
-        /// EventHandler for when the FontDialog Apply Button is pressed.
-        /// </summary>
-        /// <param name="sender">The object that invoked this EventHandler.</param>
-        /// <param name="e">The arguments to the EventHandler.</param>
-        private void fontDialog_Apply(object sender, EventArgs e)
-        {
-            this.SetTextBoxFont(this.fontDialog.Font);
-        }
-
-        /// <summary>
-        /// Closes the Form
-        /// </summary>
-        /// <param name="sender">The object that sent this command.</param>
-        /// <param name="e">The arguments to this event.</param>
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
         /// Performs the Replacement of all {EXT} values in the input string with the replacements.
         /// </summary>
         /// <param name="inputPattern">The pattern that will be duplicated.</param>
@@ -142,10 +93,82 @@ namespace ManipulativeReplacer
             foreach (string replacementEntry in replacementEntries)
             {
                 sb.AppendLine(inputPattern.Replace("{EXT}", replacementEntry));
-        }
+            }
 
             return sb.ToString();
         }
+
+        #region Font Control
+
+        /// <summary>
+        /// Method to reset all of the fonts
+        /// </summary>
+        /// <param name="font">The font to set the text boxes to</param>
+        private void SetTextBoxFont(Font font)
+        {
+            this.patternInputTextBox.Font = font;
+            this.replacementInputTextBox.Font = font;
+            this.outputTextBox.Font = font;
+        }
+
+        /// <summary>
+        /// EventHandler for when the FontDialog Apply Button is pressed.
+        /// </summary>
+        /// <param name="sender">The object that invoked this EventHandler.</param>
+        /// <param name="e">The arguments to the EventHandler.</param>
+        private void fontDialog_Apply(object sender, EventArgs e)
+        {
+            this.SetTextBoxFont(this.fontDialog.Font);
+        }
+
+        #endregion
+
+        #region Toolbar Actions
+
+        /// <summary>
+        /// EventHandler for when the 'Change Font' dialog is selected.
+        /// </summary>
+        /// <param name="sender">The object that invoked this EventHandler.</param>
+        /// <param name="e">The arguments to the EventHandler.</param>
+        private void changeFontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Save off the previous font
+            Font previousFontValue = this.fontDialog.Font;
+
+            if (this.fontDialog.ShowDialog() == DialogResult.Cancel)
+            {
+                this.fontDialog.Font = previousFontValue;
+            }
+
+            this.SetTextBoxFont(this.fontDialog.Font);
+        }
+
+        /// <summary>
+        /// Closes the Form
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Save the Result of the Replace to a File.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        /// <remarks>
+        ///     This is unique in the fact that instead of saving the contents
+        /// of the TextBox the file should be reprocessed (or the original
+        /// results saved) so that the result is not truncated.
+        /// </remarks>
+        private void saveOutputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not Supported At This Time");
+        }
+
+        #endregion
 
     }
 }
