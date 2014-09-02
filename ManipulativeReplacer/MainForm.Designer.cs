@@ -38,8 +38,9 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.mainWindowStatusStrip = new System.Windows.Forms.StatusStrip();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.mainWindowStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -49,6 +50,7 @@
             this.inputSplitContainer.Panel2.SuspendLayout();
             this.inputSplitContainer.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.mainWindowStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainSplitContainer
@@ -166,25 +168,33 @@
             this.changeFontToolStripMenuItem.Text = "Change Font";
             this.changeFontToolStripMenuItem.Click += new System.EventHandler(this.changeFontToolStripMenuItem_Click);
             // 
-            // statusStrip1
+            // mainWindowStatusStrip
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 443);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.mainWindowStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainWindowStatusLabel});
+            this.mainWindowStatusStrip.Location = new System.Drawing.Point(0, 443);
+            this.mainWindowStatusStrip.Name = "mainWindowStatusStrip";
+            this.mainWindowStatusStrip.Size = new System.Drawing.Size(784, 22);
+            this.mainWindowStatusStrip.TabIndex = 2;
+            this.mainWindowStatusStrip.Text = "statusStrip1";
             // 
             // fontDialog
             // 
             this.fontDialog.ShowApply = true;
             this.fontDialog.Apply += new System.EventHandler(this.fontDialog_Apply);
             // 
+            // mainWindowStatusLabel
+            // 
+            this.mainWindowStatusLabel.Name = "mainWindowStatusLabel";
+            this.mainWindowStatusLabel.Size = new System.Drawing.Size(38, 17);
+            this.mainWindowStatusLabel.Text = "Ready";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 465);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.mainWindowStatusStrip);
             this.Controls.Add(this.mainSplitContainer);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -203,6 +213,8 @@
             this.inputSplitContainer.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.mainWindowStatusStrip.ResumeLayout(false);
+            this.mainWindowStatusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,10 +230,11 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip mainWindowStatusStrip;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeFontToolStripMenuItem;
         private System.Windows.Forms.FontDialog fontDialog;
+        private System.Windows.Forms.ToolStripStatusLabel mainWindowStatusLabel;
     }
 }
 

@@ -42,8 +42,25 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private async void OnInputsChanged(object sender, EventArgs e)
         {
+            mainWindowStatusLabel.Text = "Processing...";
             outputTextBox.Text = "Processing...";
-            outputTextBox.Text = await Task.Run(() => _PerformReplacement(patternInputTextBox.Text, replacementInputTextBox.Text));
+
+            string processedReplacement = await Task.Run(() => _PerformReplacement(patternInputTextBox.Text, replacementInputTextBox.Text));
+
+            // Alert the user all is not well if the length is too long
+            if (processedReplacement.Length > outputTextBox.MaxLength)
+            {
+                mainWindowStatusLabel.Text = "WARNING: Output Exceeds Max Length, Results Are Truncated!!";
+                mainWindowStatusLabel.ForeColor = Color.Red;
+            }
+            else
+            {
+                mainWindowStatusLabel.Text = "Ready";
+                mainWindowStatusLabel.ForeColor = Color.Black;
+            }
+
+            // Set our text
+            outputTextBox.Text = processedReplacement;
         }
 
         /// <summary>
@@ -80,7 +97,7 @@ namespace ManipulativeReplacer
                 this.fontDialog.Font = previousFontValue;
             }
 
-                this.SetTextBoxFont(this.fontDialog.Font);
+            this.SetTextBoxFont(this.fontDialog.Font);
         }
 
         /// <summary>
@@ -125,7 +142,7 @@ namespace ManipulativeReplacer
             foreach (string replacementEntry in replacementEntries)
             {
                 sb.AppendLine(inputPattern.Replace("{EXT}", replacementEntry));
-            }
+        }
 
             return sb.ToString();
         }
