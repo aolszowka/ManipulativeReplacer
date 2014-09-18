@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutManipulativeReplacerBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutManipulativeReplacerBox.Designer.cs">
+      <DependentUpon>AboutManipulativeReplacerBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutManipulativeReplacerBox.resx">
+      <DependentUpon>AboutManipulativeReplacerBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

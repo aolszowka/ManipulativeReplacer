@@ -168,7 +168,45 @@ namespace ManipulativeReplacer
             MessageBox.Show("Not Supported At This Time");
         }
 
+        /// <summary>
+        /// EventHandler for when the 'Word Wrap' option is clicked on the Pattern Panel Menu.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void patternPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            this.patternInputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+        }
+
+        /// <summary>
+        /// EventHandler for when the 'Word Wrap' option is clicked on the Input Panel Menu.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void inputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            this.replacementInputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+        }
+
+        /// <summary>
+        /// EventHandler for when the 'Word Wrap' option is clicked on the Output Panel Menu.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void outputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            this.outputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+        }
+
         #endregion
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (AboutManipulativeReplacerBox box = new AboutManipulativeReplacerBox())
+            {
+                box.ShowDialog(this);
+            }
+        }
 
     }
 }
