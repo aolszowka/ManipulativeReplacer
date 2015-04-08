@@ -32,13 +32,13 @@
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.inputSplitContainer = new System.Windows.Forms.SplitContainer();
             this.panelInputPatternSubPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.patternInputTextBox = new System.Windows.Forms.TextBox();
+            this.patternInputTextBox = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxInputPatternSaver = new System.Windows.Forms.ToolStripComboBox();
             this.inputPatternSaveButton = new System.Windows.Forms.ToolStripButton();
             this.inputPanelDeleteButton = new System.Windows.Forms.ToolStripButton();
-            this.replacementInputTextBox = new System.Windows.Forms.TextBox();
-            this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.replacementInputTextBox = new System.Windows.Forms.RichTextBox();
+            this.outputTextBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,11 +135,11 @@
             // 
             this.patternInputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patternInputTextBox.Location = new System.Drawing.Point(3, 28);
-            this.patternInputTextBox.Multiline = true;
             this.patternInputTextBox.Name = "patternInputTextBox";
-            this.patternInputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.patternInputTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.patternInputTextBox.Size = new System.Drawing.Size(392, 187);
             this.patternInputTextBox.TabIndex = 0;
+            this.patternInputTextBox.Text = "";
             this.patternInputTextBox.WordWrap = false;
             this.patternInputTextBox.TextChanged += new System.EventHandler(this.OnInputsChanged);
             this.patternInputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessHotkeys);
@@ -186,11 +186,11 @@
             // 
             this.replacementInputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.replacementInputTextBox.Location = new System.Drawing.Point(0, 0);
-            this.replacementInputTextBox.Multiline = true;
             this.replacementInputTextBox.Name = "replacementInputTextBox";
-            this.replacementInputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.replacementInputTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.replacementInputTextBox.Size = new System.Drawing.Size(388, 218);
             this.replacementInputTextBox.TabIndex = 0;
+            this.replacementInputTextBox.Text = "";
             this.replacementInputTextBox.WordWrap = false;
             this.replacementInputTextBox.TextChanged += new System.EventHandler(this.OnInputsChanged);
             this.replacementInputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessHotkeys);
@@ -199,11 +199,11 @@
             // 
             this.outputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outputTextBox.Location = new System.Drawing.Point(0, 0);
-            this.outputTextBox.Multiline = true;
             this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.outputTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.outputTextBox.Size = new System.Drawing.Size(784, 194);
             this.outputTextBox.TabIndex = 0;
+            this.outputTextBox.Text = "";
             this.outputTextBox.WordWrap = false;
             this.outputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProcessHotkeys);
             // 
@@ -385,13 +385,11 @@
             this.Text = "Manipulative Replacer";
             this.mainSplitContainer.Panel1.ResumeLayout(false);
             this.mainSplitContainer.Panel2.ResumeLayout(false);
-            this.mainSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).EndInit();
             this.mainSplitContainer.ResumeLayout(false);
             this.inputSplitContainer.Panel1.ResumeLayout(false);
             this.inputSplitContainer.Panel1.PerformLayout();
             this.inputSplitContainer.Panel2.ResumeLayout(false);
-            this.inputSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputSplitContainer)).EndInit();
             this.inputSplitContainer.ResumeLayout(false);
             this.panelInputPatternSubPanel.ResumeLayout(false);
@@ -411,9 +409,9 @@
 
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.SplitContainer inputSplitContainer;
-        private System.Windows.Forms.TextBox patternInputTextBox;
-        private System.Windows.Forms.TextBox replacementInputTextBox;
-        private System.Windows.Forms.TextBox outputTextBox;
+        private System.Windows.Forms.RichTextBox patternInputTextBox;
+        private System.Windows.Forms.RichTextBox replacementInputTextBox;
+        private System.Windows.Forms.RichTextBox outputTextBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

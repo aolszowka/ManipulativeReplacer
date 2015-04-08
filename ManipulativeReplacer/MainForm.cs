@@ -52,7 +52,13 @@ namespace ManipulativeReplacer
             mainWindowStatusLabel.Text = "Processing...";
             outputTextBox.Text = "Processing...";
 
-            string processedReplacement = await Task.Run(() => _PerformReplacement(patternInputTextBox.Text, replacementInputTextBox.Text));
+            // Because the processing is performed on a background thread
+            // we must make a copy of the inputs, otherwise we'll run into
+            // threading issues because we're using a RichTextBox control.
+            string pattern = patternInputTextBox.Text;
+            string input = replacementInputTextBox.Text;
+
+            string processedReplacement = await Task.Run(() => _PerformReplacement(pattern, input));
 
             // Alert the user all is not well if the length is too long
             if (processedReplacement.Length > outputTextBox.MaxLength)
@@ -81,7 +87,7 @@ namespace ManipulativeReplacer
             if (e.Control && e.KeyCode == Keys.A)
             {
                 // Check to see if we were in a textbox control
-                TextBox textBoxControl = sender as TextBox;
+                TextBoxBase textBoxControl = sender as TextBoxBase;
                 if (textBoxControl != null)
                 {
                     textBoxControl.SelectAll();
@@ -95,7 +101,7 @@ namespace ManipulativeReplacer
         /// Performs the Replacement of all {EXT} values in the input string with the replacements.
         /// </summary>
         /// <param name="inputPattern">The pattern that will be duplicated.</param>
-        /// <param name="inputReplacement">The replacement string; separated by NewLine characters.</param>
+        /// <param name="inputReplacement">The replacement string; separated by NewLine characters (Either \n or \r\n).</param>
         /// <returns>A string that has all of the replacements performed.</returns>
         /// <remarks>
         ///     The Input Pattern is repeated for every replacement string from
@@ -107,7 +113,7 @@ namespace ManipulativeReplacer
 
             // Split the input string on the new line character
             var replacementEntries =
-                inputReplacement.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                inputReplacement.Split(new string[] { Environment.NewLine, "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
             // Perform the replacement
             foreach (string replacementEntry in replacementEntries)
