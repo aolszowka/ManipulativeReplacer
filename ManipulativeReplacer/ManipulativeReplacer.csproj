@@ -52,6 +52,9 @@
     <Compile Include="AboutManipulativeReplacerBox.Designer.cs">
       <DependentUpon>AboutManipulativeReplacerBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="BindableToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -46,17 +46,20 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patternPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patternPanelWordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.patternPanelWordWrapToolStripMenuItem = new ManipulativeReplacer.BindableToolStripMenuItem();
             this.inputPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inputPanelWordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inputPanelWordWrapToolStripMenuItem = new ManipulativeReplacer.BindableToolStripMenuItem();
             this.outputPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outputPanelWordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputPanelWordWrapToolStripMenuItem = new ManipulativeReplacer.BindableToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainWindowStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mainWindowStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.inputPanelDeleteButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -219,19 +222,19 @@
             // saveOutputToolStripMenuItem
             // 
             this.saveOutputToolStripMenuItem.Name = "saveOutputToolStripMenuItem";
-            this.saveOutputToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.saveOutputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveOutputToolStripMenuItem.Text = "Save Output";
             this.saveOutputToolStripMenuItem.Click += new System.EventHandler(this.saveOutputToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -241,7 +244,10 @@
             this.changeFontToolStripMenuItem,
             this.patternPanelToolStripMenuItem,
             this.inputPanelToolStripMenuItem,
-            this.outputPanelToolStripMenuItem});
+            this.outputPanelToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.saveSettingsToolStripMenuItem,
+            this.resetSettingsToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -312,7 +318,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -346,6 +352,25 @@
             this.inputPanelDeleteButton.Size = new System.Drawing.Size(44, 22);
             this.inputPanelDeleteButton.Text = "Delete";
             this.inputPanelDeleteButton.Click += new System.EventHandler(this.inputPanelDeleteButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
+            // 
+            // saveSettingsToolStripMenuItem
+            // 
+            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveSettingsToolStripMenuItem.Text = "Save Settings";
+            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
+            // 
+            // resetSettingsToolStripMenuItem
+            // 
+            this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
+            this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -400,11 +425,11 @@
         private System.Windows.Forms.ToolStripMenuItem saveOutputToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem patternPanelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem patternPanelWordWrapToolStripMenuItem;
+        private ManipulativeReplacer.BindableToolStripMenuItem patternPanelWordWrapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inputPanelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inputPanelWordWrapToolStripMenuItem;
+        private ManipulativeReplacer.BindableToolStripMenuItem inputPanelWordWrapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputPanelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem outputPanelWordWrapToolStripMenuItem;
+        private ManipulativeReplacer.BindableToolStripMenuItem outputPanelWordWrapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel panelInputPatternSubPanel;
@@ -412,6 +437,9 @@
         private System.Windows.Forms.ToolStripComboBox comboBoxInputPatternSaver;
         private System.Windows.Forms.ToolStripButton inputPatternSaveButton;
         private System.Windows.Forms.ToolStripButton inputPanelDeleteButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem saveSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetSettingsToolStripMenuItem;
     }
 }
 

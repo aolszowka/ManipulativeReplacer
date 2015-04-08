@@ -12,6 +12,7 @@ namespace ManipulativeReplacer
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using ManipulativeReplacer.Properties;
 
     /// <summary>
     /// A simple application to generate output that conforms to a given pattern.
@@ -36,6 +37,9 @@ namespace ManipulativeReplacer
             this.comboBoxInputPatternSaver.ComboBox.DataSource = this.avaliablePatterns;
             this.comboBoxInputPatternSaver.ComboBox.DisplayMember = "Name";
             this.comboBoxInputPatternSaver.ComboBox.ValueMember = "Value";
+
+            // Bind the Additional Program Settings
+            BindProgramSettings();
         }
 
         /// <summary>
@@ -193,7 +197,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void patternPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            this.patternInputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+           Settings.Default.PatternPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
         /// <summary>
@@ -203,7 +207,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void inputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            this.replacementInputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+           Settings.Default.InputPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
         /// <summary>
@@ -213,7 +217,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void outputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            this.outputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
+            Settings.Default.OutputPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
         /// <summary>
@@ -227,6 +231,26 @@ namespace ManipulativeReplacer
             {
                 box.ShowDialog(this);
             }
+        }
+
+        /// <summary>
+        /// EventHandler for when the 'Save Settings' option is selected from the main toolbar.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Resets all of the program settings back to their default value.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void resetSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Reset();
         }
 
         #endregion
@@ -270,6 +294,26 @@ namespace ManipulativeReplacer
             Pattern selectedPattern =
                 this.avaliablePatterns[this.comboBoxInputPatternSaver.ComboBox.SelectedIndex];
             this.patternInputTextBox.Text = selectedPattern.Value;
+        }
+
+        #endregion
+
+        #region Program Settings Saver
+
+        /// <summary>
+        ///     Binds various program settings to the settings file, so that
+        /// changes can be persisted from different executions of this program.
+        /// </summary>
+        private void BindProgramSettings()
+        {
+            this.patternPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "PatternPanelWordWrap");
+            this.patternInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "PatternPanelWordWrap");
+
+            this.inputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "InputPanelWordWrap");
+            this.replacementInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "InputPanelWordWrap");
+
+            this.outputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelWordWrap");
+            this.outputTextBox.DataBindings.Add("WordWrap", Settings.Default, "OutputPanelWordWrap");
         }
 
         #endregion
