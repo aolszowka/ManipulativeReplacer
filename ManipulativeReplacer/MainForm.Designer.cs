@@ -36,6 +36,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboBoxInputPatternSaver = new System.Windows.Forms.ToolStripComboBox();
             this.inputPatternSaveButton = new System.Windows.Forms.ToolStripButton();
+            this.inputPanelDeleteButton = new System.Windows.Forms.ToolStripButton();
             this.replacementInputTextBox = new System.Windows.Forms.TextBox();
             this.outputTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -51,15 +52,14 @@
             this.inputPanelWordWrapToolStripMenuItem = new ManipulativeReplacer.BindableToolStripMenuItem();
             this.outputPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputPanelWordWrapToolStripMenuItem = new ManipulativeReplacer.BindableToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainWindowStatusStrip = new System.Windows.Forms.StatusStrip();
             this.mainWindowStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.inputPanelDeleteButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -172,6 +172,16 @@
             this.inputPatternSaveButton.Text = "Save";
             this.inputPatternSaveButton.Click += new System.EventHandler(this.inputPatternSaveButton_Click);
             // 
+            // inputPanelDeleteButton
+            // 
+            this.inputPanelDeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.inputPanelDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("inputPanelDeleteButton.Image")));
+            this.inputPanelDeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.inputPanelDeleteButton.Name = "inputPanelDeleteButton";
+            this.inputPanelDeleteButton.Size = new System.Drawing.Size(44, 22);
+            this.inputPanelDeleteButton.Text = "Delete";
+            this.inputPanelDeleteButton.Click += new System.EventHandler(this.inputPanelDeleteButton_Click);
+            // 
             // replacementInputTextBox
             // 
             this.replacementInputTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -222,19 +232,19 @@
             // saveOutputToolStripMenuItem
             // 
             this.saveOutputToolStripMenuItem.Name = "saveOutputToolStripMenuItem";
-            this.saveOutputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveOutputToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.saveOutputToolStripMenuItem.Text = "Save Output";
             this.saveOutputToolStripMenuItem.Click += new System.EventHandler(this.saveOutputToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -307,6 +317,25 @@
             this.outputPanelWordWrapToolStripMenuItem.Text = "Word Wrap";
             this.outputPanelWordWrapToolStripMenuItem.CheckedChanged += new System.EventHandler(this.outputPanelWordWrapToolStripMenuItem_CheckedChanged);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
+            // 
+            // saveSettingsToolStripMenuItem
+            // 
+            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveSettingsToolStripMenuItem.Text = "Save Settings";
+            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
+            // 
+            // resetSettingsToolStripMenuItem
+            // 
+            this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
+            this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -318,7 +347,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -342,35 +371,6 @@
             // 
             this.fontDialog.ShowApply = true;
             this.fontDialog.Apply += new System.EventHandler(this.fontDialog_Apply);
-            // 
-            // inputPanelDeleteButton
-            // 
-            this.inputPanelDeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.inputPanelDeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("inputPanelDeleteButton.Image")));
-            this.inputPanelDeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.inputPanelDeleteButton.Name = "inputPanelDeleteButton";
-            this.inputPanelDeleteButton.Size = new System.Drawing.Size(44, 22);
-            this.inputPanelDeleteButton.Text = "Delete";
-            this.inputPanelDeleteButton.Click += new System.EventHandler(this.inputPanelDeleteButton_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
-            // 
-            // saveSettingsToolStripMenuItem
-            // 
-            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.saveSettingsToolStripMenuItem.Text = "Save Settings";
-            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
-            // 
-            // resetSettingsToolStripMenuItem
-            // 
-            this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
-            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
-            this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
