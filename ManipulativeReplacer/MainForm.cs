@@ -1,19 +1,28 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="MainForm.cs" company="Computers Unlimited">
-// Copyright (c) Computers Unlimited 2014. All rights reserved.
+// <copyright file="MainForm.cs" company="Ace Olszowka">
+// Copyright (c) Ace Olszowka 2014-2015. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace ManipulativeReplacer
 {
     using System;
+    using System.ComponentModel;
     using System.Drawing;
     using System.Text;
     using System.Threading.Tasks;
-
     using System.Windows.Forms;
+
+    /// <summary>
+    /// A simple application to generate output that conforms to a given pattern.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// A private store for available patterns.
+        /// </summary>
+        private BindingList<Pattern> avaliablePatterns = new BindingList<Pattern>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +31,11 @@ namespace ManipulativeReplacer
             this.fontDialog.Font =
                 new Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SetTextBoxFont(this.fontDialog.Font);
+
+            // Bind the Advanced Pattern Saver
+            this.comboBoxInputPatternSaver.ComboBox.DataSource = this.avaliablePatterns;
+            this.comboBoxInputPatternSaver.ComboBox.DisplayMember = "Name";
+            this.comboBoxInputPatternSaver.ComboBox.ValueMember = "Value";
         }
 
         /// <summary>
@@ -71,6 +85,8 @@ namespace ManipulativeReplacer
             }
         }
 
+        #region Business Logic
+
         /// <summary>
         /// Performs the Replacement of all {EXT} values in the input string with the replacements.
         /// </summary>
@@ -97,6 +113,8 @@ namespace ManipulativeReplacer
 
             return sb.ToString();
         }
+
+        #endregion
 
         #region Font Control
 
@@ -198,8 +216,11 @@ namespace ManipulativeReplacer
             this.outputTextBox.WordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
-        #endregion
-
+        /// <summary>
+        /// EventHandler for when the 'About' option is selected from the main toolbar.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (AboutManipulativeReplacerBox box = new AboutManipulativeReplacerBox())
@@ -207,6 +228,51 @@ namespace ManipulativeReplacer
                 box.ShowDialog(this);
             }
         }
+
+        #endregion
+
+        #region Input Pattern Saver
+
+        /// <summary>
+        /// EventHandler for when the Input Pattern Saver Delete Button is clicked.
+        /// </summary>
+        /// <param name="sender">The object that invoked this event.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void inputPanelDeleteButton_Click(object sender, EventArgs e)
+        {
+            this.avaliablePatterns.RemoveAt(this.comboBoxInputPatternSaver.ComboBox.SelectedIndex);
+        }
+
+        /// <summary>
+        /// EventHandler for when the Input Pattern Save Button is clicked.
+        /// </summary>
+        /// <param name="sender">The object that invoked this event.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void inputPatternSaveButton_Click(object sender, EventArgs e)
+        {
+            string patternName = this.comboBoxInputPatternSaver.ComboBox.Text;
+            string patternValue = this.patternInputTextBox.Text;
+
+            // Save the Pattern
+            Pattern newPattern = new Pattern(patternName, patternValue);
+            this.avaliablePatterns.Add(newPattern);
+            this.comboBoxInputPatternSaver.ComboBox.SelectedIndex =
+                this.avaliablePatterns.IndexOf(newPattern);
+        }
+
+        /// <summary>
+        /// EventHandler for when the Input Pattern Saver Comobox is changed.
+        /// </summary>
+        /// <param name="sender">The object that invoked this event.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void comboBoxInputPatternSaver_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Pattern selectedPattern =
+                this.avaliablePatterns[this.comboBoxInputPatternSaver.ComboBox.SelectedIndex];
+            this.patternInputTextBox.Text = selectedPattern.Value;
+        }
+
+        #endregion
 
     }
 }
