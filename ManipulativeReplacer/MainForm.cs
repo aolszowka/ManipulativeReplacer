@@ -7,6 +7,7 @@
 namespace ManipulativeReplacer
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
     using System.Text;
@@ -57,8 +58,9 @@ namespace ManipulativeReplacer
             // threading issues because we're using a RichTextBox control.
             string pattern = patternInputTextBox.Text;
             string input = replacementInputTextBox.Text;
+            bool singleLineOutput = outputPanelSingleLineToolStripMenuItem.Checked;
 
-            string processedReplacement = await Task.Run(() => _PerformReplacement(pattern, input));
+            string processedReplacement = await Task.Run(() => _PerformReplacement(pattern, input, singleLineOutput));
 
             // Alert the user all is not well if the length is too long
             if (processedReplacement.Length > outputTextBox.MaxLength)
@@ -102,26 +104,57 @@ namespace ManipulativeReplacer
         /// </summary>
         /// <param name="inputPattern">The pattern that will be duplicated.</param>
         /// <param name="inputReplacement">The replacement string; separated by NewLine characters (Either \n or \r\n).</param>
+        /// <param name="singleLine">Specifies whether or not the return value should be returned as a single line or not.</param>
         /// <returns>A string that has all of the replacements performed.</returns>
         /// <remarks>
         ///     The Input Pattern is repeated for every replacement string from
         /// the Replacement Pattern which is separated by a NewLine character.
         /// </remarks>
-        private static string _PerformReplacement(string inputPattern, string inputReplacement)
+        private static string _PerformReplacement(string inputPattern, string inputReplacement, bool singleLine)
         {
             StringBuilder sb = new StringBuilder();
+            IEnumerable<string> replacedValues = _PerformReplacement(inputPattern, inputReplacement);
 
+            foreach (string replacedValue in replacedValues)
+            {
+                if (singleLine)
+                {
+                    sb.Append(replacedValue);
+                }
+                else
+                {
+                    sb.AppendLine(replacedValue);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Performs the Replacement of all {EXT} values in the input string with the replacements.
+        /// </summary>
+        /// <param name="inputPattern">The pattern that will be duplicated.</param>
+        /// <param name="inputReplacement">The replacement string; separated by NewLine characters (Either \n or \r\n).</param>
+        /// <returns>An Enumerable that contains each of the replacements.</returns>
+        /// <remarks>
+        ///     This method is implemented by using deferred execution. The
+        /// immediate return value is an object that stores all the information
+        /// that is required to perform the action. The query represented by
+        /// this method is not executed until the object is enumerated either
+        /// by calling its <c>GetEnumerator</c> method directly or by using
+        /// <c>foreach</c> in Visual C# or <c>For Each</c> in Visual Basic.
+        /// </remarks>
+        private static IEnumerable<string> _PerformReplacement(string inputPattern, string inputReplacement)
+        {
             // Split the input string on the new line character
             var replacementEntries =
-                inputReplacement.Split(new string[] { Environment.NewLine, "\n"}, StringSplitOptions.RemoveEmptyEntries);
+                inputReplacement.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             // Perform the replacement
             foreach (string replacementEntry in replacementEntries)
             {
-                sb.AppendLine(inputPattern.Replace("{EXT}", replacementEntry));
+                yield return inputPattern.Replace("{EXT}", replacementEntry);
             }
-
-            return sb.ToString();
         }
 
         #endregion
@@ -203,7 +236,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void patternPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-           Settings.Default.PatternPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
+            Settings.Default.PatternPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
         /// <summary>
@@ -213,7 +246,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void inputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-           Settings.Default.InputPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
+            Settings.Default.InputPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
         }
 
         /// <summary>
@@ -224,6 +257,17 @@ namespace ManipulativeReplacer
         private void outputPanelWordWrapToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.OutputPanelWordWrap = ((ToolStripMenuItem)sender).Checked;
+        }
+
+        /// <summary>
+        /// EventHandler for when the 'Single Line' option is clicked on the Output Panel Menu.
+        /// </summary>
+        /// <param name="sender">The object that sent this command.</param>
+        /// <param name="e">The arguments to this event.</param>
+        private void outputPanelSingleLineToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.OutputPanelSingleLine = ((ToolStripMenuItem)sender).Checked;
+            this.OnInputsChanged(sender, e);
         }
 
         /// <summary>
@@ -320,6 +364,8 @@ namespace ManipulativeReplacer
 
             this.outputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelWordWrap");
             this.outputTextBox.DataBindings.Add("WordWrap", Settings.Default, "OutputPanelWordWrap");
+
+            this.outputPanelSingleLineToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelSingleLine");
         }
 
         #endregion

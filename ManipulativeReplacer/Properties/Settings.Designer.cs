@@ -71,5 +71,20 @@ namespace ManipulativeReplacer.Properties
                 this["OutputPanelWordWrap"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OutputPanelSingleLine
+        {
+            get
+            {
+                return ((bool)(this["OutputPanelSingleLine"]));
+            }
+            set
+            {
+                this["OutputPanelSingleLine"] = value;
+            }
+        }
     }
 }
