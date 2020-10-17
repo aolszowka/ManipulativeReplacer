@@ -5,11 +5,11 @@ This program was written to help me at work (and home), wherein I found myself i
 
 ## Basic Usage
 Here is a GIF of this in action:
-![ManipulativeReplacerInAction](Docs\ManipulativeReplacerUsage.gif)
+![ManipulativeReplacerInAction](Docs/ManipulativeReplacerUsage.gif)
 
 The program is pretty straight forward; there are three "Panels" numbered in the following screenshot:
 
-![ManipulativeReplacerPanelsNumbered](Docs\ManipulativeReplacer.png)
+![ManipulativeReplacerPanelsNumbered](Docs/ManipulativeReplacer.png)
 
 1. This is the `Pattern` panel
 2. This is the `Input` panel
