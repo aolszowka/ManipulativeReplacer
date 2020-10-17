@@ -12,9 +12,21 @@ on:
 
 jobs:
   build:
-    # The type of runner that the job will run on
     runs-on: windows-latest
 
+    env:
+      Solution_Name: ManipulativeReplacer.sln
+
     steps:
-      - uses: actions/checkout@v2
+      # Grab The Source Code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+        # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild
+
+        # Build the Solution
+      - name: Build Solution
+        run: msbuild $env:Solution_Name /m /graph /restore /t:Build /p:Configuration=Release /p:RestoreUsingStaticGraphEvaluation=true
 
