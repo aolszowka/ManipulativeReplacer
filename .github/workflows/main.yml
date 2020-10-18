@@ -24,7 +24,7 @@ jobs:
 
       # Restore all of our .NET Core Local Tools
       - name: .NET Core Local Tool Restore
-        uses: aolszowka/dotnet-tool-restore@738bcbeaa0c12e3e64f8ff6c4ff1b18a032efc9f
+        uses: aolszowka/dotnet-tool-restore@709b1902dd80e073259d6421765c65dfde62c1c2
         with:
           add-source: https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
 
