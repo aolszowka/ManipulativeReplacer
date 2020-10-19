@@ -30,14 +30,14 @@ namespace ManipulativeReplacer
             InitializeComponent();
 
             // Set our default font (Consolas)
-            this.fontDialog.Font =
+            fontDialog.Font =
                 new Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetTextBoxFont(this.fontDialog.Font);
+            SetTextBoxFont(fontDialog.Font);
 
             // Bind the Advanced Pattern Saver
-            this.comboBoxInputPatternSaver.ComboBox.DataSource = this.avaliablePatterns;
-            this.comboBoxInputPatternSaver.ComboBox.DisplayMember = "Name";
-            this.comboBoxInputPatternSaver.ComboBox.ValueMember = "Value";
+            comboBoxInputPatternSaver.ComboBox.DataSource = avaliablePatterns;
+            comboBoxInputPatternSaver.ComboBox.DisplayMember = "Name";
+            comboBoxInputPatternSaver.ComboBox.ValueMember = "Value";
 
             // Bind the Additional Program Settings
             BindProgramSettings();
@@ -147,7 +147,7 @@ namespace ManipulativeReplacer
         private static IEnumerable<string> _PerformReplacement(string inputPattern, string inputReplacement)
         {
             // Split the input string on the new line character
-            var replacementEntries =
+            string[] replacementEntries =
                 inputReplacement.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             // Perform the replacement
@@ -167,9 +167,9 @@ namespace ManipulativeReplacer
         /// <param name="font">The font to set the text boxes to</param>
         private void SetTextBoxFont(Font font)
         {
-            this.patternInputTextBox.Font = font;
-            this.replacementInputTextBox.Font = font;
-            this.outputTextBox.Font = font;
+            patternInputTextBox.Font = font;
+            replacementInputTextBox.Font = font;
+            outputTextBox.Font = font;
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to the EventHandler.</param>
         private void fontDialog_Apply(object sender, EventArgs e)
         {
-            this.SetTextBoxFont(this.fontDialog.Font);
+            SetTextBoxFont(fontDialog.Font);
         }
 
         #endregion
@@ -194,14 +194,14 @@ namespace ManipulativeReplacer
         private void changeFontToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Save off the previous font
-            Font previousFontValue = this.fontDialog.Font;
+            Font previousFontValue = fontDialog.Font;
 
-            if (this.fontDialog.ShowDialog() == DialogResult.Cancel)
+            if (fontDialog.ShowDialog() == DialogResult.Cancel)
             {
-                this.fontDialog.Font = previousFontValue;
+                fontDialog.Font = previousFontValue;
             }
 
-            this.SetTextBoxFont(this.fontDialog.Font);
+            SetTextBoxFont(fontDialog.Font);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace ManipulativeReplacer
         private void outputPanelSingleLineToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.OutputPanelSingleLine = ((ToolStripMenuItem)sender).Checked;
-            this.OnInputsChanged(sender, e);
+            OnInputsChanged(sender, e);
         }
 
         /// <summary>
@@ -314,7 +314,7 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void inputPanelDeleteButton_Click(object sender, EventArgs e)
         {
-            this.avaliablePatterns.RemoveAt(this.comboBoxInputPatternSaver.ComboBox.SelectedIndex);
+            avaliablePatterns.RemoveAt(comboBoxInputPatternSaver.ComboBox.SelectedIndex);
         }
 
         /// <summary>
@@ -324,14 +324,14 @@ namespace ManipulativeReplacer
         /// <param name="e">The arguments to this event.</param>
         private void inputPatternSaveButton_Click(object sender, EventArgs e)
         {
-            string patternName = this.comboBoxInputPatternSaver.ComboBox.Text;
-            string patternValue = this.patternInputTextBox.Text;
+            string patternName = comboBoxInputPatternSaver.ComboBox.Text;
+            string patternValue = patternInputTextBox.Text;
 
             // Save the Pattern
             Pattern newPattern = new Pattern(patternName, patternValue);
-            this.avaliablePatterns.Add(newPattern);
-            this.comboBoxInputPatternSaver.ComboBox.SelectedIndex =
-                this.avaliablePatterns.IndexOf(newPattern);
+            avaliablePatterns.Add(newPattern);
+            comboBoxInputPatternSaver.ComboBox.SelectedIndex =
+                avaliablePatterns.IndexOf(newPattern);
         }
 
         /// <summary>
@@ -342,8 +342,8 @@ namespace ManipulativeReplacer
         private void comboBoxInputPatternSaver_SelectedIndexChanged(object sender, EventArgs e)
         {
             Pattern selectedPattern =
-                this.avaliablePatterns[this.comboBoxInputPatternSaver.ComboBox.SelectedIndex];
-            this.patternInputTextBox.Text = selectedPattern.Value;
+                avaliablePatterns[comboBoxInputPatternSaver.ComboBox.SelectedIndex];
+            patternInputTextBox.Text = selectedPattern.Value;
         }
 
         #endregion
@@ -356,16 +356,16 @@ namespace ManipulativeReplacer
         /// </summary>
         private void BindProgramSettings()
         {
-            this.patternPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "PatternPanelWordWrap");
-            this.patternInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "PatternPanelWordWrap");
+            patternPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "PatternPanelWordWrap");
+            patternInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "PatternPanelWordWrap");
 
-            this.inputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "InputPanelWordWrap");
-            this.replacementInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "InputPanelWordWrap");
+            inputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "InputPanelWordWrap");
+            replacementInputTextBox.DataBindings.Add("WordWrap", Settings.Default, "InputPanelWordWrap");
 
-            this.outputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelWordWrap");
-            this.outputTextBox.DataBindings.Add("WordWrap", Settings.Default, "OutputPanelWordWrap");
+            outputPanelWordWrapToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelWordWrap");
+            outputTextBox.DataBindings.Add("WordWrap", Settings.Default, "OutputPanelWordWrap");
 
-            this.outputPanelSingleLineToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelSingleLine");
+            outputPanelSingleLineToolStripMenuItem.DataBindings.Add("Checked", Settings.Default, "OutputPanelSingleLine");
         }
 
         #endregion
