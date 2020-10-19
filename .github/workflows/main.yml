@@ -39,9 +39,10 @@ jobs:
         run: msbuild $env:Solution_Name /m /graph /restore /t:Build /p:Configuration=Release /p:RestoreUsingStaticGraphEvaluation=true
 
       # Upload Artifacts
-      - uses: actions/upload-artifact@v2
+      - name: Upload Artifacts to GitHub
+        uses: actions/upload-artifact@v2
         with:
-            name: ManipulativeReplacer-$env:GITHUB_SHA
+            name: ManipulativeReplacer-${{ github.sha }}
             path: |
               ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe
               ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe.config
