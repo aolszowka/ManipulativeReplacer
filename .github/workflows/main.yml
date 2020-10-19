@@ -30,11 +30,16 @@ jobs:
       - name: dotnet-format
         run: dotnet format --fix-style warn --fix-analyzers warn --check
 
-        # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+      # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
 
-        # Build the Solution
+      # Build the Solution
       - name: Build Solution
         run: msbuild $env:Solution_Name /m /graph /restore /t:Build /p:Configuration=Release /p:RestoreUsingStaticGraphEvaluation=true
 
+      # Upload Artifacts
+      - uses: actions/upload-artifact@v2
+        with:
+            name: binaries
+            path: ManipulativeReplacer/bin/Release
