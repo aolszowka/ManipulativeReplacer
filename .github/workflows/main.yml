@@ -24,13 +24,11 @@ jobs:
 
       # Restore all of our .NET Core Local Tools
       - name: .NET Core Local Tool Restore
-        uses: aolszowka/dotnet-tool-restore@709b1902dd80e073259d6421765c65dfde62c1c2
-        with:
-          add-source: https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
+        run: dotnet tools restore --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
 
       # Verify that the code is formatted correctly
       - name: dotnet-format
-        uses: xt0rted/dotnet-format@v1.0.1
+        run: dotnet format --fix-style warn --fix-analyzers warn --check
 
         # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
       - name: Setup MSBuild.exe
