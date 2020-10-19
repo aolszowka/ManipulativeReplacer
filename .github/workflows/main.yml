@@ -41,5 +41,8 @@ jobs:
       # Upload Artifacts
       - uses: actions/upload-artifact@v2
         with:
-            name: binaries
-            path: ManipulativeReplacer/bin/Release
+            name: ManipulativeReplacer-$env:GITHUB_SHA
+            path: |
+            ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe
+            ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe.config
+            ManipulativeReplacer/bin/Release/ManipulativeReplacer.pdb
