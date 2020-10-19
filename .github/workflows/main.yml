@@ -24,7 +24,7 @@ jobs:
 
       # Restore all of our .NET Core Local Tools
       - name: .NET Core Local Tool Restore
-        run: dotnet tools restore --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
+        run: dotnet tool restore --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
 
       # Verify that the code is formatted correctly
       - name: dotnet-format
