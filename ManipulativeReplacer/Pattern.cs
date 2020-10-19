@@ -19,8 +19,8 @@ namespace ManipulativeReplacer
         /// <param name="value">The pattern.</param>
         public Pattern(string name, string value)
         {
-            this.Name = name;
-            this.Value = value;
+            Name = name;
+            Value = value;
         }
 
         /// <summary>

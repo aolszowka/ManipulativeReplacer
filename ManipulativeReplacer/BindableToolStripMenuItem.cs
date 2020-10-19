@@ -25,16 +25,16 @@ namespace ManipulativeReplacer
         {
             get
             {
-                if (this.bindingContext == null)
+                if (bindingContext == null)
                 {
-                    this.bindingContext = new BindingContext();
+                    bindingContext = new BindingContext();
                 }
 
-                return this.bindingContext;
+                return bindingContext;
             }
             set
             {
-                this.bindingContext = value;
+                bindingContext = value;
             }
         }
 
@@ -46,12 +46,12 @@ namespace ManipulativeReplacer
         {
             get
             {
-                if (this.dataBindings == null)
+                if (dataBindings == null)
                 {
-                    this.dataBindings = new ControlBindingsCollection(this);
+                    dataBindings = new ControlBindingsCollection(this);
                 }
 
-                return this.dataBindings;
+                return dataBindings;
             }
         }
 
