@@ -43,6 +43,6 @@ jobs:
         with:
             name: ManipulativeReplacer-$env:GITHUB_SHA
             path: |
-            ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe
-            ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe.config
-            ManipulativeReplacer/bin/Release/ManipulativeReplacer.pdb
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe.config
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.pdb
