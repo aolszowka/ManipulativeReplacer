@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v2
 
       # Verify that the code is formatted correctly
-      #- name: dotnet-format
-      #  run: dotnet format style --check
+      - name: dotnet-format
+       run: dotnet format style --check
 
       # Build the Solution
       - name: Build Solution
