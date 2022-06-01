@@ -8,31 +8,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      # Grab The Source Code
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  steps:
-    # Grab The Source Code
-    - name: Checkout
-      uses: actions/checkout@v2
+      # Verify that the code is formatted correctly
+      - name: dotnet-format whitespace
+        run: dotnet format whitespace --verify-no-changes
 
-    # Verify that the code is formatted correctly
-    - name: dotnet-format whitespace
-      run: dotnet format whitespace --verify-no-changes
+      # Verify that the code is formatted correctly
+      - name: dotnet-format style
+        run: dotnet format style --verify-no-changes
 
-    # Verify that the code is formatted correctly
-    - name: dotnet-format style
-      run: dotnet format style --verify-no-changes
+      # Verify that the code is formatted correctly
+      - name: dotnet-format analzyers
+        run: dotnet format analyzers --verify-no-changes
 
-    # Verify that the code is formatted correctly
-    - name: dotnet-format analzyers
-      run: dotnet format analyzers --verify-no-changes
+      # Build the Solution
+      - name: Build Solution
+        run: dotnet build --configuration Release
 
-    # Build the Solution
-    - name: Build Solution
-      run: dotnet build --configuration Release
-
-    # Upload Artifacts
-    - name: Upload Artifacts to GitHub
-      uses: actions/upload-artifact@v2
-      with:
-          name: ManipulativeReplacer-${{ github.sha }}
-          path: ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
+      # Upload Artifacts
+      - name: Upload Artifacts to GitHub
+        uses: actions/upload-artifact@v2
+        with:
+            name: ManipulativeReplacer-${{ github.sha }}
+            path: ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
