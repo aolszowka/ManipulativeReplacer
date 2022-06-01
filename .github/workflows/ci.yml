@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+      # Grab The Source Code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Verify that the code is formatted correctly
+      - name: dotnet-format whitespace
+        run: dotnet format whitespace --verify-no-changes
+
+      # Verify that the code is formatted correctly
+      - name: dotnet-format style
+        run: dotnet format style --verify-no-changes
+
+      # Verify that the code is formatted correctly
+      - name: dotnet-format analzyers
+        run: dotnet format analyzers --verify-no-changes
+
+      # Build the Solution
+      - name: Build Solution
+        run: dotnet build --configuration Release
+
+      # Upload Artifacts
+      - name: Upload Artifacts to GitHub
+        uses: actions/upload-artifact@v3
+        with:
+            name: ManipulativeReplacer-${{ github.sha }}
+            path: ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
