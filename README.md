@@ -21,6 +21,9 @@ The `Input` panel is a NewLine delimited list of items that will be used as repl
 
 The `Output` panel will show the results of this operation (in real time). While it is editable any change to the `Pattern` or `Input` panels will regenerate this output.
 
+## Hacking
+I utilized the `upgrade-assistant` tool to inline upgrade this to .NET Core. However the underlying application is still using Windows Forms which means it is Windows Only until I can be bothered to convert this to something cross platform.
+
 ## Bugs/Feature Requests
 I accept pull requests and am responsive on GitHub, Let me know!
 
