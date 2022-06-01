@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Grab The Source Code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Verify that the code is formatted correctly
+      - name: dotnet-format
+       run: dotnet format style --check
+
+      # Build the Solution
+      - name: Build Solution
+        run: dotnet build -graphBuild -maxCpuCount --configuration Release
+
+      # Upload Artifacts
+      - name: Upload Artifacts to GitHub
+        uses: actions/upload-artifact@v2
+        with:
+            name: ManipulativeReplacer-${{ github.sha }}
+            path: |
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.exe.config
+              ManipulativeReplacer/bin/Release/ManipulativeReplacer.pdb
