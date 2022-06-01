@@ -1,21 +1,13 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
   push:
     branches:
       - '*'
-#  pull_request:
-#    branches:
-#      - '*'
 
 jobs:
   build:
-    runs-on: windows-latest
-
-    env:
-      Solution_Name: ManipulativeReplacer.sln
+    runs-on: ubuntu-latest
 
     steps:
       # Grab The Source Code
@@ -30,13 +22,9 @@ jobs:
       - name: dotnet-format
         run: dotnet format --fix-style warn --fix-analyzers warn --check
 
-      # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-      - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
-
       # Build the Solution
       - name: Build Solution
-        run: msbuild $env:Solution_Name /m /graph /restore /t:Build /p:Configuration=Release /p:RestoreUsingStaticGraphEvaluation=true
+        run: dotnet build -graphBuild -maxCpuCount --configuration Release
 
       # Upload Artifacts
       - name: Upload Artifacts to GitHub
