@@ -10,7 +10,7 @@ using System.Runtime.Versioning;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ace Olszowka")]
 [assembly: AssemblyProduct("ManipulativeReplacer")]
-[assembly: AssemblyCopyright("Copyright © Ace Olszowka 2014-2015")]
+[assembly: AssemblyCopyright("Copyright © Ace Olszowka 2014-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: SupportedOSPlatform("windows")] // Only Support Windows For Now
@@ -33,5 +33,5 @@ using System.Runtime.Versioning;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.5")]
-[assembly: AssemblyFileVersion("1.0.0.5")]
+[assembly: AssemblyVersion("1.0.0.6")]
+[assembly: AssemblyFileVersion("1.0.0.6")]
