@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      DOTNET_NOLOGO: true
     steps:
       # Grab The Source Code
       - name: Checkout
@@ -31,7 +33,7 @@ jobs:
 
       # Upload Artifacts
       - name: Upload Artifacts to GitHub
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
             name: ManipulativeReplacer-${{ github.sha }}
             path: ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
