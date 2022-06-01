@@ -18,11 +18,11 @@ jobs:
       - name: dotnet-format whitespace
        run: dotnet format whitespace --verify-no-changes
 
-             # Verify that the code is formatted correctly
+      # Verify that the code is formatted correctly
       - name: dotnet-format style
        run: dotnet format style --verify-no-changes
 
-             # Verify that the code is formatted correctly
+      # Verify that the code is formatted correctly
       - name: dotnet-format analzyers
        run: dotnet format analyzers --verify-no-changes
 
@@ -35,5 +35,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: ManipulativeReplacer-${{ github.sha }}
-            path: |
-              ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
+            path: ManipulativeReplacer/bin/Release/**/ManipulativeReplacer*
